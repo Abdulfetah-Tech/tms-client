@@ -1,0 +1,59 @@
+<div class="mat-elevation-z8" style="background: #ffffff; border-radius: 8px; overflow: hidden; padding: 1rem;">
+
+  @if (store.isLoading()) {
+    <p style="color: #0284c7; font-weight: 500; text-align: center; font-style: italic; padding: 1rem;">
+      ⏳ Pulling paged core record layers directly from the server backend...
+    </p>
+  }
+
+  <!-- 📊 High-Performance Angular Material Grid Base -->
+  <table mat-table [dataSource]="dataSource" matSort style="width: 100%;">
+
+    <!-- Student Name Column -->
+    <ng-container matColumnDef="studentName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold; color: #0f172a;"> Student </th>
+      <td mat-cell *matCellDef="let row"> {{ row.studentName }} </td>
+    </ng-container>
+
+    <!-- Course Name Column -->
+    <ng-container matColumnDef="courseName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold; color: #0f172a;"> Course </th>
+      <td mat-cell *matCellDef="let row"> {{ row.courseName }} </td>
+    </ng-container>
+
+    <!-- Status Column -->
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold; color: #0f172a;"> Status </th>
+      <td mat-cell *matCellDef="let row">
+        <span [style.color]="row.status === 'Approved' ? '#16a34a' : '#d97706'"
+              [style.background-color]="row.status === 'Approved' ? '#f0fdf4' : '#fef3c7'"
+              style="padding: 0.25rem 0.5rem; border-radius: 4px; font-weight: bold; font-size: 0.85rem;">
+          {{ row.status }}
+        </span>
+      </td>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef style="font-weight: bold; color: #0f172a;"> Actions </th>
+      <td mat-cell *matCellDef="let row">
+        @if (row.status === 'Pending') {
+          <button (click)="store.approveEnrollment(row.id)" style="background: #2563eb; color: white; border: none; padding: 0.4rem 0.8rem; border-radius: 4px; font-weight: 600; cursor: pointer; font-size: 0.85rem;">
+            Approve
+          </button>
+        }
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <!-- 🧭 Paging Component System Frame -->
+  <mat-paginator 
+    [pageSizeOptions]="[10, 25, 50]" 
+    showFirstLastButtons 
+    style="border-top: 1px solid #f1f5f9; margin-top: 0.5rem;">
+  </mat-paginator>
+
+</div>

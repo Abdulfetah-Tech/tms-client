@@ -1,0 +1,30 @@
+<div class="card" style="border: 1px solid #cbd5e1; background: #ffffff; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); margin-bottom: 1.5rem; font-family: system-ui, sans-serif;">
+  
+  <!-- ✅ CONFIGURED INTERACTIVE ROUTE TRIGGER HOOK -->
+  <h3 style="margin-top: 0; margin-bottom: 0.5rem; font-size: 1.25rem;">
+    <a [routerLink]="['/courses', course().id]" style="color: #2563eb; text-decoration: none; font-weight: 700; transition: text-decoration 0.15s;">
+      {{ course().title }}
+    </a>
+    <span style="color: #64748b; font-size: 1rem; font-weight: normal; margin-left: 0.25rem;">({{ course().code }})</span>
+  </h3>
+  
+  <p style="color: #475569; font-size: 0.95rem; margin-top: 0; margin-bottom: 1rem;">
+    Enrolled <strong>{{ course().enrollmentCount }}</strong> of <strong>{{ course().maxCapacity }}</strong> seats
+  </p>
+
+  <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+    <span class="badge" 
+          [style.background-color]="course().enrollmentCount >= course().maxCapacity ? '#fef2f2' : '#f0fdf4'"
+          [style.color]="course().enrollmentCount >= course().maxCapacity ? '#b91c1c' : '#16a34a'"
+          style="padding: 0.35rem 0.75rem; border-radius: 20px; font-size: 0.85rem; font-weight: bold;">
+      {{ course().enrollmentCount >= course().maxCapacity ? "❌ Full" : "✅ Accepting Enrollments" }}
+    </span>
+
+    <button (click)="enrollClicked.emit(course())"
+            [disabled]="course().enrollmentCount >= course().maxCapacity"
+            [style.background-color]="course().enrollmentCount >= course().maxCapacity ? '#cbd5e1' : '#2563eb'"
+            style="color: #ffffff; border: none; padding: 0.5rem 1.25rem; border-radius: 6px; font-weight: 600; font-size: 0.95rem; cursor: pointer;">
+      Enroll
+    </button>
+  </div>
+</div>

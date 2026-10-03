@@ -1,0 +1,43 @@
+<div class="command-center" style="max-width: 800px; margin: 2rem auto; font-family: system-ui, -apple-system, sans-serif; padding: 0 1rem;">
+  
+  <!-- Header Core Metric Panel Window -->
+  <div class="dashboard-header" style="background: linear-gradient(135deg, #1e3a8a 0%, #0284c7 100%); color: white; padding: 2rem; border-radius: 12px; box-shadow: 0 10px 15px -3px rgba(2, 132, 199, 0.1); margin-bottom: 2rem;">
+    <h1 style="margin: 0; font-size: 1.85rem; font-weight: 800;">🛡️ Instructor Command Center</h1>
+    <div style="margin-top: 1rem; background: rgba(255, 255, 255, 0.15); display: inline-flex; align-items: center; padding: 0.5rem 1rem; border-radius: 8px; font-weight: 600;">
+      ⏳ Live Pending Queue: <span style="margin-left: 0.5rem; color: #fef08a; font-weight: bold;">{{ store.pendingCount() }} students</span>
+    </div>
+  </div>
+
+  <!-- ✅ FIXED MAT-TABLE ENTERPRISE DATA GRID WRAPPER LINK -->
+  <div class="grid-section" style="margin-bottom: 3rem;">
+    <app-enrollment-list />
+  </div>
+
+  <!-- Mobile screen simulator spacer area pushing chart into lazy targets -->
+  <div style="height: 300px; background: #f8fafc; border: 2px dashed #cbd5e1; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #94a3b8; font-style: italic; margin-bottom: 3rem;">
+    🌐 [Scroll down to trigger downloading heavy analytics engines...]
+  </div>
+
+  <!-- ✅ DEFENSIVE PERFORMANCE DEFER WINDOW PIPELINE -->
+  <div class="chart-section">
+    @defer (on viewport; prefetch on idle(500)) {
+      <!-- Heavy code chunk evaluates only after viewport trigger parameters resolve -->
+      <tms-analytics-chart [data]="store.entities()" />
+    } @placeholder {
+      <!-- Light placeholder prints instantly on mount, solving blank white screen lags -->
+      <div class="skeleton-chart" style="background: #f1f5f9; color: #475569; padding: 2rem; border-radius: 12px; text-align: center; font-weight: 500; border: 1px solid #e2e8f0;">
+        Scroll further down into viewport to view live data analytics chart...
+      </div>
+    } @loading (minimum 500ms) {
+      <!-- Guard against jarring layout flashes over sub-millisecond timeline windows -->
+      <div class="spinner" style="background: #f0fdfa; color: #0f766e; padding: 2rem; border-radius: 12px; text-align: center; font-weight: 600; border: 1px solid #99f6e4;">
+        ⚙️ Downloading isolated analytics chart chunk engine...
+      </div>
+    } @error {
+      <p style="background: #fef2f2; color: #b91c1c; padding: 1rem; border-radius: 8px; font-weight: 600; text-align: center; border: 1px solid #fca5a5;">
+        ❌ Failed to pull analytics chunk segment. Check device connectivity rules.
+      </p>
+    }
+  </div>
+
+</div>
